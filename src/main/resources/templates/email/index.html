@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web2 - Sistema de Cadastro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- Tela de Cadastro -->
+    <div id="cadastro-screen" class="screen active">
+        <div class="form-container">
+            <div class="header">
+                <h1><i class="fas fa-user-plus"></i> Criar Conta</h1>
+                <p>Preencha os dados abaixo para se cadastrar</p>
+            </div>
+
+            <form id="cadastro-form" class="form">
+                <div class="form-group">
+                    <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <span class="error-message" id="nome-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span>
+                    <small class="hint">Use: Gmail, Outlook, Yahoo, Hotmail, iCloud ou Bol</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf"><i class="fas fa-id-card"></i> CPF</label>
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                    <span class="error-message" id="cpf-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone"><i class="fas fa-phone"></i> Telefone</label>
+                    <input type="text" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+                    <span class="error-message" id="telefone-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Senha</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="error-message" id="password-error"></span>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <small class="hint">Mínimo 8 caracteres com letras maiúsculas, minúsculas, números e símbolos</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password"><i class="fas fa-lock"></i> Confirmar Senha</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" required>
+                    <span class="error-message" id="confirm-password-error"></span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="cadastro-btn">
+                        <i class="fas fa-user-plus"></i> Cadastrar
+                    </button>
+                    <button type="button" class="btn-secondary" onclick="mostrarLogin()">
+                        <i class="fas fa-sign-in-alt"></i> Já tenho conta
+                    </button>
+                </div>
+            </form>
+
+            <div class="loading-overlay" id="loading-cadastro">
+                <div class="spinner"></div>
+                <p>Cadastrando...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen">
+        <div class="form-container">
+            <div class="header">
+                <h1><i class="fas fa-sign-in-alt"></i> Login</h1>
+                <p>Entre com suas credenciais</p>
+            </div>
+
+            <form id="login-form" class="form">
+                <div class="form-group">
+                    <label for="login-email"><i class="fas fa-envelope"></i> E-mail, CPF ou Telefone</label>
+                    <input type="text" id="login-email" name="login" required>
+                    <span class="error-message" id="login-email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password"><i class="fas fa-lock"></i> Senha</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <span class="error-message" id="login-password-error"></span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+                    <button type="button" class="btn-secondary" onclick="mostrarCadastro()">
+                        <i class="fas fa-user-plus"></i> Criar conta
+                    </button>
+                </div>
+            </form>
+
+            <div class="loading-overlay" id="loading-login">
+                <div class="spinner"></div>
+                <p>Entrando...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Cadastro Realizado!</h2>
+            <p>Verifique seu e-mail para ativar sua conta.</p>
+            <button class="btn-primary" onclick="mostrarLogin()">Fazer Login</button>
+        </div>
+    </div>
+
+    <!-- Notificações -->
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+        <button onclick="fecharNotificacao()"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
